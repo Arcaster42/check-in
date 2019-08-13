@@ -1,8 +1,10 @@
 <template>
     <div class="page">
-        <input v-if="getActiveAlarm" type="button" class="checkin-btn" value="Check In">
-        <input v-if="!getActiveAlarm" type="button" class="checkin-btn" value="New Check-In" @click="newCheckInClick">
-        <CheckIn v-if="showCheckIn"/>
+        <transition name="fade" mode="out-in">
+            <input v-if="getActiveAlarm" type="button" class="checkin-btn" value="Check In">
+            <input v-if="!getActiveAlarm" type="button" class="checkin-btn" value="New Check-In" @click="newCheckInClick">
+            <CheckIn v-if="getShowCheckIn"/>
+        </transition>
     </div>    
 </template>
 
@@ -12,20 +14,20 @@ export default {
     components: {
         CheckIn
     },
-    data: () => ({
-        showCheckIn: false
-    }),
     computed: {
         getActiveAlarm() {
-            return this.$store.state.user.active_alarm
+            return this.$store.state.user.alarm_active
+        },
+        getShowCheckIn() {
+            return this.$store.state.showCheckIn
         }
     },
     methods: {
         checkInClick() {
-            
+
             },
         newCheckInClick() {
-            this.showCheckIn = true
+            this.$store.commit('setShowCheckIn', true)
         }
     }
 }
@@ -47,5 +49,12 @@ export default {
     border-radius: 25%;
     font-size: 20px;
     background-color: steelblue;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
