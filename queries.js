@@ -20,7 +20,7 @@ const registerAccount = (data) => {
                                 last_name: data.lastName,
                                 phone: data.phone,
                                 pass_hash: hash,
-                                active_alarm: false
+                                alarm_active: false
                             }).then(() => resolve(true))
                             .catch(() => reject({err: 'Database Error'}))
                         }
@@ -61,4 +61,22 @@ const login = async (data) => {
         })
     }
 
-module.exports = { registerAccount, login }
+const insertTime = (user, time) => {
+    return db('accounts')
+        .where('username', user.username)
+        .update({alarm_active: true, alarm_interval: time, alarm_creation: Date.now(), alarm_deadline: Date.now() + (60 * time * 1000)})
+        .then((result) => {
+            return result
+        })
+}
+
+const checkIn = (user) => {
+    return db('accounts')
+        .where('username', user.username)
+        .update({alarm_creation: Date.now(), alarm_deadline: Date.now() + (60 * user.alarm_interval * 1000)})
+        .then((result) => {
+            return result
+        })
+}
+
+module.exports = { registerAccount, login, insertTime, checkIn }
