@@ -11,19 +11,11 @@ app.use(cors())
 const { registerAccount } = require('./queries')
 
 app.get('/', (req, res) => {
-    const object = {
-        message: 'Endpoint message'
-    }
-    res.send(object)
-    console.log('endpoint reached')
+    res.send(200)
 })
 
 app.get('/api', (req, res) => {
-    const object = {
-        message: 'Endpoint message'
-    }
-    res.send(object)
-    console.log('API reached')
+    res.send(200)
 })
 
 app.post('/api/account', (req, res) => {
