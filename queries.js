@@ -19,7 +19,8 @@ const registerAccount = (data) => {
                                 first_name: data.firstName,
                                 last_name: data.lastName,
                                 phone: data.phone,
-                                pass_hash: hash
+                                pass_hash: hash,
+                                active_alarm: false
                             }).then(() => resolve(true))
                             .catch(() => reject({err: 'Database Error'}))
                         }
