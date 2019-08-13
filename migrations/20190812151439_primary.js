@@ -12,16 +12,7 @@ exports.up = function(knex) {
       t.bigInteger('alarm_creation')
       t.bigInteger('alarm_deadline')
       t.integer('alarm_interval')
-    })
-  }
-  
-  const createChecks = () => {
-    knex.schema.createTable('checks', (t) => {
-      t.increment().primary()
-      t.string('username').references('accounts.username')
-      t.bigInteger('check_in')
-      t.bigInteger('check_limit')
-      t.boolean('alarm')
+      t.text('alarm_message')
     })
   }
 
