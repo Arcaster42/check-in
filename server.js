@@ -8,7 +8,7 @@ app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(cors())
 
-const { registerAccount, login } = require('./queries')
+const { registerAccount, login, insertTime } = require('./queries')
 
 app.get('/', (req, res) => {
     res.send(200)
@@ -30,6 +30,14 @@ app.post('/api/login', (req, res) => {
         res.send(result)
     })
     .catch((err) => res.send(err))
+})
+
+app.post('/api/timer', (req, res) => {
+    console.log(req.body)
+    insertTime(req.body.time)
+    .then((result) => {
+        res.sendStatus(200)
+    })
 })
 
 app.listen(port, () => console.log(`Listening on ${port}`))
