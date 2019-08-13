@@ -8,6 +8,7 @@ const store = new Vuex.Store({
   state: {
     view: 'None',
     user: null,
+    showCheckIn: false
   },
   getters: {
 
@@ -18,6 +19,12 @@ const store = new Vuex.Store({
     },
     setUser(state, user) {
       state.user = user
+    },
+    setAlarm(state, flag) {
+      state.user.alarm_active = flag
+    },
+    setShowCheckIn(state, flag) {
+      state.showCheckIn = flag
     }
   },
   actions: {
