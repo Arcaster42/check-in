@@ -4,6 +4,7 @@
       <Splash v-if="getView==='Splash'"/>
       <Login v-if="getView==='Login'"/>
       <Register v-if="getView==='Register'"/>
+      <Hub v-if="getView==='Hub'"/>
     </transition>
   </div>
 </template>
@@ -13,13 +14,15 @@ import axios from 'axios'
 import Splash from './components/Splash'
 import Login from './components/Login'
 import Register from './components/Register'
+import Hub from './components/Hub'
 
 export default {
   name: 'app',
   components: {
     Splash,
     Login,
-    Register
+    Register,
+    Hub
   },
   computed: {
     getView() {
