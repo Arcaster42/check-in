@@ -26,7 +26,9 @@ export default {
                 password: this.password
             }
             axios.post('http://localhost:3000/api/login', user)
-            .then((result) => console.log(result.data))
+            .then((result) => {
+                if (result.data) this.$store.commit('setView', 'Check')
+                })
         },
         registerClick(event) {
             event.preventDefault()
