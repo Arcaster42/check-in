@@ -15,6 +15,9 @@ const store = new Vuex.Store({
   mutations: {
     setView(state, view) {
       state.view = view
+    },
+    setUser(state, user) {
+      state.user = user
     }
   },
   actions: {
