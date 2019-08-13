@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "frontend": "vue-cli-service serve",
+    "backend": "yarn nodemon server",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "migrate": "yarn knex migrate:latest",
