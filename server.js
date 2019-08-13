@@ -19,25 +19,17 @@ app.get('/api', (req, res) => {
 })
 
 app.post('/api/account', (req, res) => {
-    console.log(`POST account received ${req.body}`)
     registerAccount(req.body)
     .then((result) => res.send(result))
+    .catch((err) => res.send(err))
 })
 
 app.post('/api/login', (req, res) => {
-    console.log(`POST login received ${req.body}`)
     login(req.body)
     .then((result) => {
-        console.log('inside then')
         res.send(result)
     })
     .catch((err) => res.send(err))
-    
-    // login(req.body).then((val) => {
-    //     console.log('res.send invoked')
-    //     console.log(val)
-    //     res.send(val)
-    // })
 })
 
 app.listen(port, () => console.log(`Listening on ${port}`))
