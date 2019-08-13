@@ -7,24 +7,27 @@ const registerAccount = (data) => {
         .where('username', data.username)
         .then((query) => {
             if (query.length < 1) {
-                bcrypt.hash(data.password, 10, (err, hash) => {
-                    if (err) {
-                        console.log(err)
-                    }
-                    else {
-                        db('accounts').insert({
-                            username: data.username,
-                            email: data.email,
-                            first_name: data.firstName,
-                            last_name: data.lastName,
-                            phone: data.phone,
-                            pass_hash: hash
-                        }).then(() => {return 'Registered'})
-                    }
+                return new Promise((resolve, reject) => {
+                    bcrypt.hash(data.password, 10, (err, hash) => {
+                        if (err) {
+                            console.log(err)
+                        }
+                        else {
+                            db('accounts').insert({
+                                username: data.username,
+                                email: data.email,
+                                first_name: data.firstName,
+                                last_name: data.lastName,
+                                phone: data.phone,
+                                pass_hash: hash
+                            }).then(() => resolve(true))
+                            .catch(() => reject(false))
+                        }
+                    })
                 })
             } else {
                 console.log('Taken')
-                return 'Taken'
+                return false
             }
         })
         .catch((err) => {
