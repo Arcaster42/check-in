@@ -28,11 +28,15 @@ export default {
     methods: {
         createClick(event) {
             event.preventDefault()
-            axios.post('http://localhost:3000/api/timer', { user: this.$store.state.user, time: parseInt(this.value) })
+            axios.post('http://localhost:3000/api/timer', { user: this.$store.state.user, time: parseInt(this.value), message: this.message })
                 .then((result) => {
                     console.log(result)
                     this.$store.commit('setAlarm', true)
                     this.$store.commit('setShowCheckIn', false)
+                    axios.post('http://localhost:3000/api/user', { user: this.$store.state.user })
+                        .then((result) => {
+                            this.$store.commit('setUser', result.data[0])
+                        })
                 })
         },
         checkInClick(event) {
@@ -40,6 +44,10 @@ export default {
             axios.post('http://localhost:3000/api/timer', { user: this.$store.state.user })
                 .then((result => {
                     console.log(result)
+                    axios.post('http://localhost:3000/api/user', { user: this.$store.state.user })
+                        .then((result) => {
+                            this.$store.commit('setUser', result.data)
+                        })
                 }))
         }
     }
