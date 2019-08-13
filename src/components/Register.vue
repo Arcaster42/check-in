@@ -47,6 +47,11 @@ export default {
                 password: this.password
             }
             axios.post('http://localhost:3000/api/account', user)
+                .then((result) => {
+                    console.log(result)
+                    if (result.data) this.$store.commit('setView', 'Login')
+                    if (!result.data) this.$store.commit('setView', 'Splash')
+                })
         },
         cancelClick(event) {
             event.preventDefault()
