@@ -5,10 +5,20 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "migrate": "yarn knex migrate:latest",
+    "rollback": "yarn knex migrate:rollback"
   },
   "dependencies": {
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
     "core-js": "^2.6.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "knex": "^0.19.1",
+    "nodemon": "^1.19.1",
+    "pg": "^7.12.1",
     "vue": "^2.6.10"
   },
   "devDependencies": {
