@@ -21,13 +21,12 @@ const registerAccount = (data) => {
                                 phone: data.phone,
                                 pass_hash: hash
                             }).then(() => resolve(true))
-                            .catch(() => reject(false))
+                            .catch(() => reject({err: 'Database Error'}))
                         }
                     })
                 })
             } else {
-                console.log('Taken')
-                return false
+                return {err: 'Username Unavailable'}
             }
         })
         .catch((err) => {
