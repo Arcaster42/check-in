@@ -1,17 +1,21 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+
+  },
+  mounted() {
+    // fetch('http://localhost:3000/api').then((result) => {return result.json()}).then((reply) => console.log(reply))
+    // axios.get('http://localhost:3000/api').then((query) => {console.log(query.data)})
+    // axios.post('http://localhost:3000/api/account', {username: 'test'}).then((response) => console.log(response))
   }
 }
 </script>
