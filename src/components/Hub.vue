@@ -1,13 +1,32 @@
 <template>
     <div class="page">
-        <input type="button" class="checkin-btn" value="CHECK IN">
+        <input v-if="getActiveAlarm" type="button" class="checkin-btn" value="Check In">
+        <input v-if="!getActiveAlarm" type="button" class="checkin-btn" value="New Check-In" @click="newCheckInClick">
+        <CheckIn v-if="showCheckIn"/>
     </div>    
 </template>
 
 <script>
+import CheckIn from './CheckIn'
 export default {
+    components: {
+        CheckIn
+    },
+    data: () => ({
+        showCheckIn: false
+    }),
+    computed: {
+        getActiveAlarm() {
+            return this.$store.state.user.active_alarm
+        }
+    },
     methods: {
-
+        checkInClick() {
+            
+            },
+        newCheckInClick() {
+            this.showCheckIn = true
+        }
     }
 }
 </script>
@@ -22,11 +41,11 @@ export default {
 }
 
 .checkin-btn {
-    width: 30%;
-    min-height: 300px;
+    width: 10%;
+    min-height: 100px;
     margin: auto;
-    border-radius: 50%;
-    font-size: 60px;
+    border-radius: 25%;
+    font-size: 20px;
     background-color: steelblue;
 }
 </style>
