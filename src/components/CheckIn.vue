@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     data: () => ({
         value: null,
@@ -27,6 +28,19 @@ export default {
     methods: {
         createClick(event) {
             event.preventDefault()
+            axios.post('http://localhost:3000/api/timer', { user: this.$store.state.user, time: parseInt(this.value) })
+                .then((result) => {
+                    console.log(result)
+                    this.$store.commit('setAlarm', true)
+                    this.$store.commit('setShowCheckIn', false)
+                })
+        },
+        checkInClick(event) {
+            event.preventDefault()
+            axios.post('http://localhost:3000/api/timer', { user: this.$store.state.user })
+                .then((result => {
+                    console.log(result)
+                }))
         }
     }
 }
