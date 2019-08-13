@@ -61,12 +61,21 @@ const login = async (data) => {
         })
     }
 
-const insertTime = (user, time) => {
+const setUser = (user) => {
+    console.log(user)
     return db('accounts')
         .where('username', user.username)
-        .update({alarm_active: true, alarm_interval: time, alarm_creation: Date.now(), alarm_deadline: Date.now() + (60 * time * 1000)})
-        .then((result) => {
-            return result
+        .then((results) => {
+            return results
+        })
+}
+
+const insertTime = (user, time, message) => {
+    return db('accounts')
+        .where('username', user.username)
+        .update({alarm_active: true, alarm_message: message, alarm_interval: time, alarm_creation: Date.now(), alarm_deadline: Date.now() + (60 * time * 1000)})
+        .then(() => {
+            return user
         })
 }
 
@@ -74,9 +83,18 @@ const checkIn = (user) => {
     return db('accounts')
         .where('username', user.username)
         .update({alarm_creation: Date.now(), alarm_deadline: Date.now() + (60 * user.alarm_interval * 1000)})
-        .then((result) => {
-            return result
+        .then(() => {
+            return user
         })
 }
 
-module.exports = { registerAccount, login, insertTime, checkIn }
+const safe = (user) => {
+    return db('accounts')
+        .where('username', user.username)
+        .update({alarm_active: false})
+        .then(() => {
+            return user
+        })
+}
+
+module.exports = { registerAccount, login, setUser, insertTime, checkIn, safe }
