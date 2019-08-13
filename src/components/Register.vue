@@ -50,7 +50,7 @@ export default {
                 .then((result) => {
                     console.log(result)
                     if (result.data) this.$store.commit('setView', 'Login')
-                    if (!result.data) this.$store.commit('setView', 'Splash')
+                    if (result.data.err || !result.data) this.$store.commit('setView', 'Splash')
                 })
         },
         cancelClick(event) {
