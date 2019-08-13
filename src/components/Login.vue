@@ -27,7 +27,8 @@ export default {
             }
             axios.post('http://localhost:3000/api/login', user)
             .then((result) => {
-                if (result.data) this.$store.commit('setView', 'Check')
+                if (result.data && !result.data.err) this.$store.commit('setView', 'Check')
+                if (result.data.err) console.log(result.data.err)
                 })
         },
         registerClick(event) {
