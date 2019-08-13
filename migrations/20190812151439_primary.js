@@ -8,6 +8,9 @@ exports.up = function(knex) {
       t.string('last_name')
       t.string('phone')
       t.text('pass_hash')
+      t.boolean('active_alarm')
+      t.timestamp('alarm_creation')
+      t.timestamp('alarm_deadline')
     })
   }
   
@@ -22,7 +25,6 @@ exports.up = function(knex) {
   }
 
   return createAccounts()
-    .then(() => createChecks())
 };
 
 exports.down = function(knex) {
