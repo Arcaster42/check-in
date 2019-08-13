@@ -1,16 +1,17 @@
 
 exports.up = function(knex) {
   const createAccounts = () => {
-    knex.schema.createTable('accounts', (t) => {
+    return knex.schema.createTable('accounts', (t) => {
       t.string('username').unsigned().primary()
       t.string('email')
       t.string('first_name')
       t.string('last_name')
       t.string('phone')
       t.text('pass_hash')
-      t.boolean('active_alarm')
-      t.timestamp('alarm_creation')
-      t.timestamp('alarm_deadline')
+      t.boolean('alarm_active')
+      t.bigInteger('alarm_creation')
+      t.bigInteger('alarm_deadline')
+      t.integer('alarm_interval')
     })
   }
   
@@ -18,8 +19,8 @@ exports.up = function(knex) {
     knex.schema.createTable('checks', (t) => {
       t.increment().primary()
       t.string('username').references('accounts.username')
-      t.timestamp('check_in')
-      t.timestamp('check_limit')
+      t.bigInteger('check_in')
+      t.bigInteger('check_limit')
       t.boolean('alarm')
     })
   }
@@ -28,5 +29,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTable('accounts').dropTable('checks')
+  return knex.schema.dropTable('accounts')
 };
