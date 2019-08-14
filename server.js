@@ -6,7 +6,6 @@ const path = require('path')
 const bodyParser = require('body-parser')
 app.use(express.static(__dirname + 'public'))
 app.use(bodyParser.json())
-app.use(cors())
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", '*');
     res.header("Access-Control-Allow-Credentials", true);
@@ -14,6 +13,7 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
     next();
 });
+app.use(cors())
 
 const { registerAccount, login, setUser, insertTime, checkIn, safe } = require('./queries')
 
