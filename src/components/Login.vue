@@ -5,8 +5,8 @@
             <input class="textbox" type="text" v-model="username"><br>
             <label for="password">Password</label><br>
             <input class="textbox" type="password" v-model="password"><br>
-            <input type="submit" value="Login" @click="loginClick"><br>
-            <button @click="registerClick">Register</button><br>
+            <input class="btn" type="submit" value="Login" @click="loginClick"><br>
+            <button class="btn" @click="registerClick">Register</button><br>
         </form>
     </div>
 </template>
@@ -50,5 +50,36 @@ export default {
     margin-top: 10%;
     height: 100%;
     width: 100%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    margin: auto;
+    border: 2px solid steelblue;
+    padding: 20px;
+    background-color: steelblue;
+}
+
+label {
+    font-size: 20px;
+    color: white;
+}
+
+input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.btn {
+    background-color: white;
+    border: none;
+    font-size: 16px;
+    padding: 8px;
+}
+
+.btn:hover {
+    background-color: lightblue;
 }
 </style>

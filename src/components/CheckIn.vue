@@ -1,6 +1,6 @@
 <template>
     <div class="mini-page">
-        <form>
+        <form class="form">
             <p>CheckIn</p>
             <label for="interval">Interval</label>
             <select name="interval" v-model="value">
@@ -13,7 +13,7 @@
             </select><br>
             <label for="message">Emergency Message</label><br>
             <textarea class="textarea" name="message" v-model="message"></textarea><br>
-            <input type="submit" value="Create" @click="createClick">
+            <input class="btn" type="submit" value="Create" @click="createClick">
         </form>
     </div>    
 </template>
@@ -55,15 +55,46 @@ export default {
 </script>
 
 <style scoped>
-.mini-page {
-    border: 2px solid black;
-    width: 30%;
-    margin: auto;
-    margin-top: 20px;
+.textarea {
+    width: 100%;
+    height: 100px;
 }
 
-.textarea {
-    width: 200px;
-    height: 100px;
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    margin: auto;
+    margin-top: 10px;
+    border: 2px solid steelblue;
+    padding: 20px;
+    background-color: steelblue;
+}
+
+p {
+    font-size: 24px;
+    color: white;
+}
+
+label {
+    font-size: 16px;
+    color: white;
+}
+
+input, select {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.btn {
+    background-color: white;
+    border: none;
+    font-size: 16px;
+    padding: 8px;
+}
+
+.btn:hover {
+    background-color: lightblue;
 }
 </style>
