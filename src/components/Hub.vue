@@ -25,6 +25,18 @@ export default {
     components: {
         CheckIn
     },
+    created () {
+        setInterval(() => {
+            if (this.$store.state.user) {
+                axios.post('http://localhost:3000/api/user', { user: this.$store.state.user })
+                        .then((result) => {
+                            console.log(result)
+                            this.$store.commit('setUser', result.data[0])
+                        })
+            }
+        }, 60000)
+    }
+    ,
     data: () => ({
         showMessage: false,
         checkIns: 0
