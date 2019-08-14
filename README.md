@@ -42,6 +42,12 @@ yarn run frontend //vue-vuex
 yarn run build
 ```
 
+## Planned Features
+
+- Family & Friend account sharing to allow others to see your status
+- Account controls to edit details or delete accounts
+- Automated outgoing messaging on missed check-ins
+
 ## Future Plans
 
 This project is intended to serve as a proof-of-concept for a mobile application for iOS and Android systems to be released at a later time.
