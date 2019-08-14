@@ -13,6 +13,7 @@
 
 <script>
 import axios from 'axios'
+const baseURL = process.env.HOST || 'http://localhost:3000'
 export default {
     data: () => ({
         username: '',
@@ -25,7 +26,7 @@ export default {
                 username: this.username,
                 password: this.password
             }
-            axios.post('http://localhost:3000/api/login', user)
+            axios.post(baseURL + '/api/login', user)
             .then((result) => {
                 if (result.data && !result.data.err) {
                     this.$store.commit('setUser', result.data)
