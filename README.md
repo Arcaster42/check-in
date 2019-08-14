@@ -47,6 +47,8 @@ yarn run build
 - Family & Friend account sharing to allow others to see your status
 - Account controls to edit details or delete accounts
 - Automated outgoing messaging on missed check-ins
+- GPS location storage for last known location
+- Notifications for check-in deadlines nearing
 
 ## Future Plans
 
